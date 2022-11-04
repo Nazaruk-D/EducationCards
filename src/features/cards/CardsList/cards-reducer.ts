@@ -52,7 +52,7 @@ export const cardsReducer = (state: CardsInitialStateType = initialState, action
     switch (action.type) {
         case 'CARDS/GET-CARDS':
             return <CardsInitialStateType>{ ...action.cards }
-        // return {...action.cards}
+
         case 'CARDS/RESET-CARDS':
             const initialValue = {
                 cards: <CardType[]>[
