@@ -43,6 +43,8 @@ export const AddCardModal = (props: AddCardModalType) => {
             },
         }
         dispatch(addCardTC(newCard))
+        setQuestion('')
+        setAnswer('')
     }
 
     return (

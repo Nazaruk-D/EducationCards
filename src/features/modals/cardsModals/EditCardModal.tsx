@@ -50,6 +50,8 @@ export const EditCardModal = (props: EditCardModalType) => {
             },
         }
         dispatch(updateCardTC(newCard, { cardsPack_id: props.packId }))
+        setQuestion('')
+        setAnswer('')
     }
 
     return (

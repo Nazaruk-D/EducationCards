@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './PackListTable.module.scss'
-import { removePackTC } from '../packs-reducer'
-import { useAppDispatch } from '../../../../app/store'
-import { GetPackParams, PackType } from '../../../../api/packsAPI'
 import RowPack from './RowPack/RowPack'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+import { PackType } from '../../../../api/packsAPI'
 
 type PackListTablePropsType = {
     user_id: string
@@ -15,17 +13,8 @@ type PackListTablePropsType = {
     setFilterUpdatePack: (user_id: string, sortPacks: string) => void
 }
 
-export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userId, cardPacks, setFilterUpdatePack }) => {
-    const dispatch = useAppDispatch()
+export const PackListTable: React.FC<PackListTablePropsType> = ({ cardPacks, setFilterUpdatePack }) => {
     const [filter, setFilter] = useState(true)
-
-    const deletePack = (id: string) => {
-        user_id === userId ? dispatch(removePackTC(id)) : dispatch(removePackTC(id))
-    }
-
-    const learnPack = (id: string) => {
-        alert('learnPack:  ' + id)
-    }
 
     const setFilterEndHandler = () => {
         setFilterUpdatePack('', '1updated')
@@ -35,15 +24,6 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userI
     const setFilterStartHandler = () => {
         setFilterUpdatePack('', '0updated')
         setFilter(!filter)
-    }
-
-    const myCardPacksSettings: GetPackParams = {
-        user_id: userId,
-        pageCount: 8,
-    }
-    const cardPacksSettings: GetPackParams = {
-        user_id: '',
-        pageCount: 8,
     }
 
     return (
@@ -77,7 +57,7 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userI
                     {cardPacks.length ? (
                         <TableBody>
                             {cardPacks.map((row, index) => (
-                                <RowPack key={index} deletePack={deletePack} row={row} learnPack={learnPack} />
+                                <RowPack key={index} row={row} />
                             ))}
                         </TableBody>
                     ) : (

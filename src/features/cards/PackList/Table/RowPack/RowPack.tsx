@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { TableCell, TableRow } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 import s from './RowPack.module.scss'
@@ -14,20 +14,21 @@ import { EditPackModal } from '../../../../modals/packsModals/EditPackModal'
 
 type RowPropsType = {
     row: PackType
-    deletePack: (rowId: string) => void
-    learnPack: (rowId: string) => void
 }
 
-const RowPack: React.FC<RowPropsType> = ({ row, deletePack, learnPack }) => {
+const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
     const { removePackModal, toggleRemovePackModal } = useModal()
     const { editPackModal, toggleEditPackModal } = useModal()
 
     const dispatch = useAppDispatch()
     const userId = useAppSelector((store) => store.auth.user._id)
 
-    const setPackId = (id: string, userId: string) => {
-        dispatch(setCardParams({ cardsPack_id: id }))
-    }
+    const setPackId = useCallback(
+        (id: string, userId: string) => {
+            dispatch(setCardParams({ cardsPack_id: id }))
+        },
+        [dispatch]
+    )
 
     const formatDate = (date: string): string => {
         return new Date(date).toLocaleDateString('ru', {
@@ -38,7 +39,6 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, learnPack }) => {
     }
 
     const classEducation = row.cardsCount > 0 ? s.schoolIcon : s.blockSchoolIcon
-
     return (
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -92,22 +92,31 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, learnPack }) => {
                     </div>
                 </TableCell>
             </TableRow>
-            <EditPackModal
-                title="Edit pack"
-                isShowing={editPackModal}
-                hide={toggleEditPackModal}
-                id={row._id}
-                packName={row.name}
-            />
-            <RemovePackModal
-                title="Delete pack"
-                id={row._id}
-                packName={row.name}
-                isShowing={removePackModal}
-                hide={toggleRemovePackModal}
-            />
+
+            {editPackModal && (
+                //to render only 1 time. when toggleEditPackModal is clicked, it sets editPackModal to true
+                <EditPackModal
+                    title="Edit pack"
+                    isShowing={editPackModal}
+                    hide={toggleEditPackModal}
+                    id={row._id}
+                    packName={row.name}
+                />
+            )}
+
+            {removePackModal && (
+                //to render only 1 time. when toggleRemovePackModal is clicked, it sets removePackModal to true
+
+                <RemovePackModal
+                    title="Delete pack"
+                    id={row._id}
+                    packName={row.name}
+                    isShowing={removePackModal}
+                    hide={toggleRemovePackModal}
+                />
+            )}
         </>
     )
-}
+})
 
 export default RowPack
