@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
 import { Paper, Radio, RadioGroup } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { getCardsTC, gradeCardTC } from '../CardsList/cards-reducer'
+import { getCardsTC, gradeCardTC, setCardsAC, updadeCurrentCardAC } from '../CardsList/cards-reducer'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { CardType } from '../../../api/cardsAPI'
@@ -20,8 +20,6 @@ const getCard = (cards: CardType[]) => {
         },
         { sum: 0, id: -1 }
     )
-    console.log('test: ', sum, rand, res, res.id)
-
     return cards[res.id + 1]
 }
 type LearnPagePropsType = {}
@@ -55,8 +53,6 @@ export const LearnPage: React.FC<LearnPagePropsType> = ({}) => {
         __v: 0,
     })
     const [firstLoad, setFirstLoad] = useState(true)
-    console.log('card', card)
-    console.log(gradeValue)
 
     useEffect(() => {
         if (firstLoad) {
@@ -78,6 +74,7 @@ export const LearnPage: React.FC<LearnPagePropsType> = ({}) => {
 
     const nextAnswerHandler = () => {
         dispatch(gradeCardTC({ grade: gradeValue, card_id: card._id }))
+        dispatch(updadeCurrentCardAC(gradeValue, card._id))
         setCard(getCard(cards))
         setShowAnswer(false)
     }

@@ -1,5 +1,5 @@
 import { CardType } from '../../../api/cardsAPI'
-import { CardsInitialStateType, cardsReducer, getCardsAC } from './cards-reducer'
+import { CardsInitialStateType, cardsReducer, setCardsAC } from './cards-reducer'
 
 let startState: CardsInitialStateType = {
     cards: <CardType[]>[],
@@ -40,7 +40,7 @@ beforeEach(() => {
 it('should get all cards', () => {
     const endState = cardsReducer(
         startState,
-        getCardsAC({
+        setCardsAC({
             cards: <CardType[]>[
                 {
                     _id: 'kqw30923aw2',

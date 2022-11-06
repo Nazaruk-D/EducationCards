@@ -35,7 +35,7 @@ export const CardsList = () => {
         dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
         return () => {}
     }, [cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount])
-
+    console.log('cardlist')
     const valueFromPagination = {
         totalCount: cardsTotalCount,
         pageCount: pageCount,

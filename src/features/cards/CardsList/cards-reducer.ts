@@ -92,14 +92,23 @@ export const cardsReducer = (state: CardsInitialStateType = initialState, action
                 tokenDeathTime: 0,
             }
             return initialValue
+        case 'CARDS/UPDATE-CARD':
+            return {
+                ...state,
+                cards: state.cards.map((card) =>
+                    card._id === action.cardId ? { ...card, grade: action.grade, shots: card.shots + 1 } : card
+                ),
+            }
+
         default:
             return state
     }
 }
 
 //Action creators
-export const getCardsAC = (cards: GetCardsResponseType) => ({ type: 'CARDS/GET-CARDS', cards } as const)
+export const setCardsAC = (cards: GetCardsResponseType) => ({ type: 'CARDS/GET-CARDS', cards } as const)
 export const resetCardAC = () => ({ type: 'CARDS/RESET-CARDS' } as const)
+export const updadeCurrentCardAC = (grade: number, cardId: string) => ({ type: 'CARDS/UPDATE-CARD', grade, cardId } as const)
 
 // Thunks
 export const getCardsTC =
@@ -109,7 +118,7 @@ export const getCardsTC =
         cardsAPI
             .getCards(params!)
             .then((res) => {
-                dispatch(getCardsAC(res))
+                dispatch(setCardsAC(res))
             })
             .catch((err: any) => {
                 let error = err.response.data.error
@@ -168,7 +177,7 @@ export const gradeCardTC =
         cardsAPI
             .grageCard(data)
             .then(() => {
-                dispatch(getCardsTC(params))
+                // dispatch(getCardsTC(params))
             })
             .catch((err: any) => {
                 let error = err.response.data.error
@@ -178,4 +187,7 @@ export const gradeCardTC =
     }
 
 //Types
-export type CardsActionsType = ReturnType<typeof getCardsAC> | ReturnType<typeof resetCardAC>
+export type CardsActionsType =
+    | ReturnType<typeof setCardsAC>
+    | ReturnType<typeof resetCardAC>
+    | ReturnType<typeof updadeCurrentCardAC>

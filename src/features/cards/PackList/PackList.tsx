@@ -40,7 +40,7 @@ export const PackList = React.memo(() => {
             dispatch(resetPackAC())
         }
     }, [user_id, pageCount, pagePack, packName, min, max, block, sortPacks])
-
+    console.log('packlist')
     const valueFromPagination = { totalCount: cardPacksTotalCount, pageCount, pagePack }
     const setPaginationPage = (page: number) => {
         dispatch(setSetting({ page }))
