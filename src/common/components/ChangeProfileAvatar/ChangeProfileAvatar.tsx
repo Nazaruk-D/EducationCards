@@ -8,7 +8,8 @@ import { setErrAC } from '../../../app/app-reducer'
 export const ChangeProfileAvatar = () => {
     const dispatch = useAppDispatch()
     const avatar = useAppSelector((state) => state.auth.user.avatar)
-    const vievAvatar = avatar ? avatar : AvatarImage
+
+    const [isAvaBroken, setIsAvaBroken] = React.useState(false)
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
             const file = e.target.files[0]
@@ -34,10 +35,14 @@ export const ChangeProfileAvatar = () => {
         }
         reader.readAsDataURL(file)
     }
-
+    const errorHandler = () => {
+        setIsAvaBroken(true)
+        alert('Кривая картинка')
+    }
+    const vievAvatar = isAvaBroken ? AvatarImage : avatar
     return (
         <div className={s.imageContainer}>
-            <img className={s.img} alt="my avatar" src={vievAvatar} />
+            <img className={s.img} alt="my avatar" src={vievAvatar} onError={errorHandler} />
             <label>
                 <input type="file" onChange={uploadHandler} style={{ display: 'none' }} />
                 <span className={s.iconPhoto}></span>

@@ -13,7 +13,8 @@ const Header = () => {
     const name = useAppSelector((state) => state.auth.user.name)
     const avatar = useAppSelector((state) => state.auth.user.avatar)
     const [collapsed, setCollapsed] = useState<boolean>(true)
-    const vievAvatar = avatar ? avatar : AvatarImage
+    const [isAvaBroken, setIsAvaBroken] = React.useState(false)
+
     const inputClass = !collapsed ? s.active : s.nav
 
     const onClickHandler = () => setCollapsed(!collapsed)
@@ -24,7 +25,11 @@ const Header = () => {
             setCollapsed(true)
         }, 8000)
     }, [collapsed])
-
+    const errorHandler = () => {
+        setIsAvaBroken(true)
+        alert('Кривая картинка')
+    }
+    const vievAvatar = isAvaBroken ? AvatarImage : avatar
     return (
         <div className={s.headerContainer}>
             <div className={s.mainBlock}>
