@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../app/store'
 
 import { logoutTC } from '../auth/auth-reducer'
 import { BackPackArrow } from '../../common/components/BackPackArrow/BackPackArrow'
-import { ChangeProfileAvatar } from '../../common/components/ChangeProfileAvatar/ChangeProfileAvatar'
+import { ChangeAvatar } from '../../common/components/ChangeProfileAvatar/ChangeAvatar'
 
 const Profile = () => {
     const dispatch = useAppDispatch()
@@ -37,7 +37,7 @@ const Profile = () => {
                     </div>
                     <Paper className={s.paper} elevation={3}>
                         <h2 className={`${authStyle.title} ${s.title}`}>Personal Information</h2>
-                        <ChangeProfileAvatar />
+                        <ChangeAvatar renderComponent={'Profile'} />
                         <h4 className={s.name}>
                             <EditableSpan name={name} />
                         </h4>

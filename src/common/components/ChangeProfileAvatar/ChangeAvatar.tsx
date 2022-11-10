@@ -1,15 +1,19 @@
 import React, { ChangeEvent } from 'react'
-import s from '../../../common/components/ChangeProfileAvatar/ChangeProfileAvatar.module.scss'
+import s from './ChangeAvatar.module.scss'
 import AvatarImage from '../../assets/image/avatar.jpg'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { updateUser } from '../../../features/auth/auth-reducer'
 import { setErrAC } from '../../../app/app-reducer'
+type RenderComponent = 'Profile' | 'Header'
 
-export const ChangeProfileAvatar = () => {
+type ChangeProfileAvatarPropsType = {
+    renderComponent: RenderComponent
+}
+export const ChangeAvatar: React.FC<ChangeProfileAvatarPropsType> = ({ renderComponent }) => {
     const dispatch = useAppDispatch()
     const avatar = useAppSelector((state) => state.auth.user.avatar)
-
     const [isAvaBroken, setIsAvaBroken] = React.useState(false)
+
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
             const file = e.target.files[0]
@@ -17,7 +21,7 @@ export const ChangeProfileAvatar = () => {
 
             if (file.size < 1000000) {
                 convertFileToBase64(file, (file64: string) => {
-                    console.log('file64: ', file64)
+                    // console.log('file64: ', file64)
                     dispatch(updateUser({ avatar: file64 }))
                 })
             } else {
@@ -37,15 +41,16 @@ export const ChangeProfileAvatar = () => {
     }
     const errorHandler = () => {
         setIsAvaBroken(true)
-        alert('Кривая картинка')
     }
     const vievAvatar = isAvaBroken ? AvatarImage : avatar
+
+    const imgStyle = renderComponent === 'Profile' ? s.imgProfile : s.imgHeader
     return (
         <div className={s.imageContainer}>
-            <img className={s.img} alt="my avatar" src={vievAvatar} onError={errorHandler} />
+            <img className={imgStyle} alt="my avatar" src={vievAvatar} onError={errorHandler} />
             <label>
                 <input type="file" onChange={uploadHandler} style={{ display: 'none' }} />
-                <span className={s.iconPhoto}></span>
+                {renderComponent === 'Header' ? <></> : <span className={s.iconPhoto}></span>}
             </label>
         </div>
     )

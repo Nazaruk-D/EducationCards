@@ -7,6 +7,7 @@ import { useAppSelector } from '../store'
 import Button from '@mui/material/Button'
 import AvatarImage from '../../common/assets/image/avatar.jpg'
 import CollapsedMenu from '../../common/components/CollapsedMenu/CollapsedMenu'
+import { ChangeAvatar } from '../../common/components/ChangeProfileAvatar/ChangeAvatar'
 
 const Header = () => {
     const isLoggedIn = useAppSelector((store) => store.auth.isLoggedIn)
@@ -51,10 +52,7 @@ const Header = () => {
                         <div className={s.profileName} onClick={onClickHandler}>
                             {name}
                         </div>
-                        <div>
-                            {/*{avatar}*/}
-                            <img className={s.img} alt="my avatar" src={vievAvatar} />
-                        </div>
+                        <ChangeAvatar renderComponent={'Header'} />
                         <div className={inputClass} onMouseLeave={onMouseLeaveHandler}>
                             <CollapsedMenu />
                         </div>
