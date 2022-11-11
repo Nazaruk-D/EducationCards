@@ -8,7 +8,7 @@ import {
     UpdateCardData,
 } from '../../../api/cardsAPI'
 import { AppRootStateType, AppThunk } from '../../../app/store'
-import { setAppStatusAC } from '../../../app/app-reducer'
+import { setAppStatusAC, setErrAC } from '../../../app/app-reducer'
 
 const initialState = {
     cards: <CardType[]>[
@@ -106,14 +106,15 @@ export const getCardsTC =
     (params?: GetCardParams): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
+
         cardsAPI
             .getCards(params!)
             .then((res) => {
                 dispatch(getCardsAC(res))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
@@ -121,44 +122,53 @@ export const getCardsTC =
 export const updateCardTC =
     (updateCardData: UpdateCardData, params?: GetCardParams): AppThunk =>
     (dispatch) => {
+        dispatch(setAppStatusAC('loading'))
+
         cardsAPI
             .updateCard(updateCardData)
             .then(() => {
                 dispatch(getCardsTC(params))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 export const removeCardTC =
     (id: string): AppThunk =>
     (dispatch, getState: () => AppRootStateType) => {
         const params = getState().cardParams
+        dispatch(setAppStatusAC('loading'))
+
         cardsAPI
             .removeCard(id)
             .then(() => {
                 dispatch(getCardsTC(params))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 export const addCardTC =
     (cardData: CreateCardData): AppThunk =>
     (dispatch, getState: () => AppRootStateType) => {
         const params = getState().cardParams
+        dispatch(setAppStatusAC('loading'))
+
         cardsAPI
             .createCard(cardData)
             .then(() => {
                 dispatch(getCardsTC(params))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 export const gradeCardTC =
     (data: GradeDataType): AppThunk =>
@@ -171,8 +181,8 @@ export const gradeCardTC =
                 dispatch(getCardsTC(params))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
