@@ -1,7 +1,6 @@
 import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../../api/packsAPI'
 import { AppRootStateType, AppThunk } from '../../../app/store'
-import { setSetting } from './SettingsBlock/setting-reducer'
-import { setAppStatusAC } from '../../../app/app-reducer'
+import { setAppStatusAC, setErrAC } from '../../../app/app-reducer'
 
 const initialState = {
     cardPacks: <PackType[]>[
@@ -91,8 +90,8 @@ export const getPacksTC =
                 dispatch(getPacksAC(res))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
@@ -100,39 +99,56 @@ export const getPacksTC =
 export const updatePackTC =
     (id: string, name: string, deckCover: string, isPrivate?: boolean, params?: GetPackParams): AppThunk =>
     (dispatch) => {
-        packsAPI.updatePack(id, name, deckCover, isPrivate!).then(() => {
-            dispatch(getPacksTC(params))
-        })
+        dispatch(setAppStatusAC('loading'))
+
+        packsAPI
+            .updatePack(id, name, deckCover, isPrivate!)
+            .then(() => {
+                dispatch(getPacksTC(params))
+            })
+            .catch((err: any) => {
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
+            })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 export const removePackTC =
     (id: string): AppThunk =>
     (dispatch, getState: () => AppRootStateType) => {
         const params = getState().setting
+
+        dispatch(setAppStatusAC('loading'))
+
         packsAPI
             .removePack(id)
             .then(() => {
                 dispatch(getPacksTC(params))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 export const addPackTC =
     (newPack: CreateNewPackData): AppThunk =>
     (dispatch, getState: () => AppRootStateType) => {
         const params = getState().setting
+
+        dispatch(setAppStatusAC('loading'))
+
         packsAPI
             .createPack(newPack)
             .then(() => {
                 dispatch(getPacksTC(params))
             })
             .catch((err: any) => {
-                let error = err.response.data.error
-                console.log('catch, error:', error)
+                const error = err.response.data.error
+                dispatch(setErrAC(error))
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 //Types
