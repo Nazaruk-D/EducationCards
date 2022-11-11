@@ -40,7 +40,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(({ userId, packUserId
                     <div className={s.menuIcon}>
                         <MoreVertIcon fontSize={'small'} style={{ paddingBottom: '2px' }} onClick={onClickHandler} />
                         <div className={inputClass}>
-                            <ActionsMenu />
+                            <ActionsMenu packName={packName} />
                         </div>
                     </div>
                 )}
