@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/FridayProject/static/css/main.1fa9349b.css",
-    "main.js": "/FridayProject/static/js/main.55196115.js",
-    "static/js/787.28cb0dcd.chunk.js": "/FridayProject/static/js/787.28cb0dcd.chunk.js",
-    "static/media/avatar.jpg": "/FridayProject/static/media/avatar.19108967af9a62b77256.jpg",
-    "static/media/iconSendForgotPassword.svg": "/FridayProject/static/media/iconSendForgotPassword.cdfba66fde5a43fa07de20848a33be02.svg",
-    "static/media/pencilForProfile.svg": "/FridayProject/static/media/pencilForProfile.a169cd90c950b39da314.svg",
-    "static/media/iconPhotoProfile.svg": "/FridayProject/static/media/iconPhotoProfile.f44d951526acbd5ef97e.svg",
-    "index.html": "/FridayProject/index.html",
-    "static/media/logout.svg": "/FridayProject/static/media/logout.4631dbd136b384a81188.svg",
-    "static/media/profile.svg": "/FridayProject/static/media/profile.df46afb1e4b9a8c53af1.svg",
-    "static/media/backProfile.svg": "/FridayProject/static/media/backProfile.19c7bd8ee7d32ca8451f.svg",
-    "main.1fa9349b.css.map": "/FridayProject/static/css/main.1fa9349b.css.map",
-    "main.55196115.js.map": "/FridayProject/static/js/main.55196115.js.map",
-    "787.28cb0dcd.chunk.js.map": "/FridayProject/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/EducationCards/static/css/main.3c9a67a6.css",
+    "main.js": "/EducationCards/static/js/main.58818663.js",
+    "static/js/787.28cb0dcd.chunk.js": "/EducationCards/static/js/787.28cb0dcd.chunk.js",
+    "static/media/avatar.jpg": "/EducationCards/static/media/avatar.19108967af9a62b77256.jpg",
+    "static/media/iconSendForgotPassword.svg": "/EducationCards/static/media/iconSendForgotPassword.cdfba66fde5a43fa07de20848a33be02.svg",
+    "static/media/pencilForProfile.svg": "/EducationCards/static/media/pencilForProfile.a169cd90c950b39da314.svg",
+    "static/media/iconPhotoProfile.svg": "/EducationCards/static/media/iconPhotoProfile.f44d951526acbd5ef97e.svg",
+    "index.html": "/EducationCards/index.html",
+    "static/media/logout.svg": "/EducationCards/static/media/logout.4631dbd136b384a81188.svg",
+    "static/media/profile.svg": "/EducationCards/static/media/profile.df46afb1e4b9a8c53af1.svg",
+    "static/media/backProfile.svg": "/EducationCards/static/media/backProfile.19c7bd8ee7d32ca8451f.svg",
+    "main.3c9a67a6.css.map": "/EducationCards/static/css/main.3c9a67a6.css.map",
+    "main.58818663.js.map": "/EducationCards/static/js/main.58818663.js.map",
+    "787.28cb0dcd.chunk.js.map": "/EducationCards/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1fa9349b.css",
-    "static/js/main.55196115.js"
+    "static/css/main.3c9a67a6.css",
+    "static/js/main.58818663.js"
   ]
 }
