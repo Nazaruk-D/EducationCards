@@ -11,6 +11,7 @@ Depending on the value set by the user, the frequency of hitting this question i
 Team project. The team worked according to the template - <a href="https://www.figma.com/file/C1HxtTFYhUh57G3z18rn5v/%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%BE-%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0%D0%BC?node-id=34242%3A6&t=ygaU0bzMjH8eRyaU-0">figma</a> <br/>
 About the team: <a href="https://github.com/Nazaruk-D">Dmitry Nazaruk</a>, <a href="https://github.com/irinrudko">Iryna Rudzko</a>, <a href="https://github.com/Bmwbyas">Askerko Alexandr</a>.<br/>
 To create tasks we've used Jira, got git to collaborate, and had daily scrum meetings to communicate and catch up with the team.<br/>
+Demo: https://nazaruk-d.github.io/EducationCards <br/>
 
 <img width="800px" src="./src/common/assets/image/example.png">
 
