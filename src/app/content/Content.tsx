@@ -19,10 +19,8 @@ const Content = () => {
             <Routes>
                 <Route path={'/'} element={<Profile />} />
                 <Route path={routes.packsList} element={<PackList />} />
-                {/*<Route path={routes.friendsPacksList} element={<FriendsPack />} />*/}
                 <Route path={routes.learnPack} element={<LearnPage />} />
                 <Route path={routes.myPacksList} element={<CardsList />} />
-                {/*<Route path={routes.pagePack} element={<PagePack />} />*/}
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />
                 <Route path={routes.registration} element={<Registration />} />
