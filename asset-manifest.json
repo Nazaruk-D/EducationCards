@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/EducationCards/static/css/main.bc004041.css",
+    "main.css": "/EducationCards/static/css/main.f1bfdd8b.css",
     "main.js": "/EducationCards/static/js/main.b307837f.js",
     "static/js/787.28cb0dcd.chunk.js": "/EducationCards/static/js/787.28cb0dcd.chunk.js",
     "static/media/avatar.jpg": "/EducationCards/static/media/avatar.19108967af9a62b77256.jpg",
@@ -11,12 +11,12 @@
     "static/media/logout.svg": "/EducationCards/static/media/logout.4631dbd136b384a81188.svg",
     "static/media/profile.svg": "/EducationCards/static/media/profile.df46afb1e4b9a8c53af1.svg",
     "static/media/backProfile.svg": "/EducationCards/static/media/backProfile.19c7bd8ee7d32ca8451f.svg",
-    "main.bc004041.css.map": "/EducationCards/static/css/main.bc004041.css.map",
+    "main.f1bfdd8b.css.map": "/EducationCards/static/css/main.f1bfdd8b.css.map",
     "main.b307837f.js.map": "/EducationCards/static/js/main.b307837f.js.map",
     "787.28cb0dcd.chunk.js.map": "/EducationCards/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc004041.css",
+    "static/css/main.f1bfdd8b.css",
     "static/js/main.b307837f.js"
   ]
 }
